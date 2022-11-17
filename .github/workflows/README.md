@@ -28,5 +28,10 @@ An opinionated convenience wrapper action for applications to deploy
       aws-region: ${{ secrets.AWS_REGION }}
       aws-ecr-repo: ${{ secrets.ECR_REPO }}
     with:
-      image-tag: ghactions-${{ github.ref_name }}-${{ github.sha }}
+      image-tag: ghactions-${{ github.ref_name }}-${{ github.sha }}      
+      ecs-cluster-name: 'cluster-application-server'
+      ecs-service-name: 'application-server'
+      ecs-container-name: 'app-server'
+      codedeploy-application: 'AppECS-cluster-application-server'
+      codedeploy-deployment-group: 'DgpECS-cluster-application-server'
 ```

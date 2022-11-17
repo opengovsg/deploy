@@ -20,4 +20,10 @@ An opinionated convenience wrapper action for applications to deploy to AWS ECS 
       fly-api-token: ${{ secrets.FLY_API_TOKEN }}
     with:
       image-tag: ghactions-${{ github.ref_name }}-${{ github.sha }}
+      # Optional; defaults shown      
+      ecs-cluster-name: 'cluster-application-server'
+      ecs-service-name: 'application-server'
+      ecs-container-name: 'app-server'
+      codedeploy-application: 'AppECS-cluster-application-server'
+      codedeploy-deployment-group: 'DgpECS-cluster-application-server'
 ```

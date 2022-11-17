@@ -28,6 +28,31 @@ on:
         description: 'The locally tagged docker image to push to Fly.io'
         required: true
         type: string
+      ecs-cluster-name:
+        description: 'The ECS cluster name'
+        required: false
+        type: string
+        default: 'cluster-application-server'
+      ecs-service-name:
+        description: 'The ECS service name'
+        required: false
+        type: string
+        default: 'application-server'
+      ecs-container-name:
+        description: 'The ECS container name'
+        required: false
+        type: string
+        default: 'app-server'
+      codedeploy-application:
+        description: 'The ECS CodeDeploy application name'
+        required: false
+        type: string
+        default: 'AppECS-cluster-application-server'
+      codedeploy-deployment-group:
+        description: 'The ECS CodeDeploy deployment group name'
+        required: false
+        type: string
+        default: 'DgpECS-cluster-application-server'
 
 jobs:
   proceed:
@@ -80,11 +105,11 @@ jobs:
       aws-region: ${{ secrets.aws-region }}
       ecr-repository: ${{ secrets.aws-ecr-repo }}
     with:
-      ecs-cluster-name: 'cluster-application-server'
-      ecs-service-name: 'application-server'
-      ecs-container-name: 'app-server'
-      codedeploy-application: 'AppECS-cluster-application-server'
-      codedeploy-deployment-group: 'DgpECS-cluster-application-server'
+      ecs-cluster-name: ${{ inputs.ecs-cluster-name }}
+      ecs-service-name: ${{ inputs.ecs-service-name }}
+      ecs-container-name: ${{ inputs.ecs-container-name }}
+      codedeploy-application: ${{ inputs.codedeploy-application }}
+      codedeploy-deployment-group: ${{ inputs.codedeploy-deployment-group }}
       image-tag: ${{ inputs.image-tag }}
 
   fly:
