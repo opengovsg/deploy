@@ -1,6 +1,4 @@
 name: deploy
-description: |
-  Opinionated convenience wrapper action for applications to deploy to AWS ECS or Fly.io
 on:
   workflow_call:
     secrets:
@@ -75,7 +73,7 @@ jobs:
     name: ECS
     needs: [proceed]
     if: needs.proceed.outputs.ecs == 'true'
-    uses: ./aws/action.yml
+    uses: opengovsg/deploy/.github/workflows/aws.yml@latest
     secrets:
       aws-account-id: ${{ secrets.aws-account-id }}
       cicd-role: ${{ secrets.aws-role-arn }}
@@ -96,7 +94,7 @@ jobs:
     name: Fly.io
     needs: [proceed]
     if: needs.proceed.outputs.fly == 'true'
-    uses: ./fly/action.yml
+    uses: opengovsg/deploy/.github/workflows/fly.yml@latest
     secrets:
       app-name: ${{ secrets.fly-app-name }}
       fly-api-token: ${{ secrets.fly-api-token }}

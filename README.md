@@ -7,7 +7,7 @@ An opinionated convenience wrapper action for applications to deploy to AWS ECS 
 ```
   jobs:
     deploy:
-      uses: opengovsg/deploy@latest
+      uses: opengovsg/deploy/.github/workflows/deploy.yml@latest
     secrets:
       # Set AWS secrets if you want to deploy to AWS
       aws-account-id: ${{ secrets.AWS_ACCOUNT_ID }}
