@@ -4,7 +4,7 @@ An opinionated convenience wrapper action for applications to deploy
 
 ## Quickstart
 
-```
+```yaml
   jobs:
     deploy:
       uses: opengovsg/deploy/.github/workflows/fly.yml@latest
@@ -18,7 +18,7 @@ An opinionated convenience wrapper action for applications to deploy
 
 ```
 
-```
+```yaml
   jobs:
     deploy:
       uses: opengovsg/deploy/.github/workflows/aws.yml@latest
@@ -28,6 +28,7 @@ An opinionated convenience wrapper action for applications to deploy
       aws-region: ${{ secrets.AWS_REGION }}
       aws-ecr-repo: ${{ secrets.ECR_REPO }}
     with:
+      env: 'stg'
       image-tag: ghactions-${{ github.ref_name }}-${{ github.sha }}      
       ecs-cluster-name: 'cluster-application-server'
       ecs-service-name: 'application-server'
