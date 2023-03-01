@@ -24,6 +24,11 @@ on:
         description: 'API Token for Fly.io'
         required: false
     inputs:
+      env:
+        description: 'The environment to deploy to'
+        required: false
+        default: ''
+        type: string
       image-tag:
         description: 'The locally tagged docker image to push to Fly.io'
         required: true
@@ -105,6 +110,7 @@ jobs:
       aws-region: ${{ secrets.aws-region }}
       ecr-repository: ${{ secrets.aws-ecr-repo }}
     with:
+      env: ${{ inputs.env }}
       ecs-cluster-name: ${{ inputs.ecs-cluster-name }}
       ecs-service-name: ${{ inputs.ecs-service-name }}
       ecs-container-name: ${{ inputs.ecs-container-name }}

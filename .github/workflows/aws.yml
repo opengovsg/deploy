@@ -17,9 +17,8 @@ on:
         required: true
     inputs:
       env:
-        description: 'Environment name to deploy to'
-        required: false
-        default: ''
+        description: 'The environment to deploy to'
+        required: true
         type: string
       ecs-cluster-name:
         description: 'ECS cluster to deploy to'
