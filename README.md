@@ -4,7 +4,7 @@ An opinionated convenience wrapper action for applications to deploy to AWS ECS 
 
 ## Quickstart
 
-```
+```yaml
   jobs:
     deploy:
       uses: opengovsg/deploy/.github/workflows/deploy.yml@latest
@@ -19,8 +19,9 @@ An opinionated convenience wrapper action for applications to deploy to AWS ECS 
       fly-app-name: ${{ secrets.APP_NAME }}
       fly-api-token: ${{ secrets.FLY_API_TOKEN }}
     with:
+      env: 'stg'
       image-tag: ghactions-${{ github.ref_name }}-${{ github.sha }}
-      # Optional; defaults shown      
+      # Optional; defaults shown
       ecs-cluster-name: 'cluster-application-server'
       ecs-service-name: 'application-server'
       ecs-container-name: 'app-server'
